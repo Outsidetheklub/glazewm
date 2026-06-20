@@ -135,32 +135,12 @@ impl AnimationWindow {
           ));
         };
 
-        let scale_factor =
-          dispatcher.nearest_display(window)?.scale_factor()?;
-
-        // Image needs to be scaled by the scale factor of the display
-        // containing the window.
-        #[allow(clippy::cast_precision_loss)]
-        let image_width =
-          CGImage::width(Some(&captured.cg_image)) as f32 / scale_factor;
-        #[allow(clippy::cast_precision_loss)]
-        let image_height =
-          CGImage::height(Some(&captured.cg_image)) as f32 / scale_factor;
-
         CATransaction::begin();
         CATransaction::setDisableActions(true);
 
-        #[allow(clippy::cast_possible_truncation)]
-        let inner_rect = Rect::from_xy(
-          inner_rect.x(),
-          inner_rect.y(),
-          image_width as i32,
-          image_height as i32,
-        );
-
         Self::update_layer(
           &layer,
-          &inner_rect,
+          inner_rect,
           outer_rect,
           opacity.as_ref(),
         );

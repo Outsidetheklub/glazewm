@@ -369,7 +369,7 @@ impl AnimationManager {
           )
         },
         dispatcher,
-      )?;
+      )??;
     } else {
       let anim_window = AnimationWindow::new(
         context,
