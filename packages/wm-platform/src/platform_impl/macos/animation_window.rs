@@ -2,8 +2,8 @@ use objc2::{
   rc::Retained, runtime::AnyObject, MainThreadMarker, MainThreadOnly,
 };
 use objc2_app_kit::{
-  NSBackingStoreType, NSColor, NSWindow, NSWindowOrderingMode,
-  NSWindowStyleMask,
+  NSBackingStoreType, NSColor, NSWindow, NSWindowAnimationBehavior,
+  NSWindowOrderingMode, NSWindowStyleMask,
 };
 use objc2_core_foundation::{CFRetained, CGPoint, CGRect, CGSize};
 use objc2_core_graphics::CGImage;
@@ -102,6 +102,9 @@ impl AnimationWindow {
         ns_window.setBackgroundColor(Some(&NSColor::clearColor()));
         ns_window.setOpaque(false);
         ns_window.setIgnoresMouseEvents(true);
+
+        // Disable AppKit's default open/close animations.
+        ns_window.setAnimationBehavior(NSWindowAnimationBehavior::None);
 
         // SAFETY: `NSWindow` is normally released on close, but when the
         // `Retained<NSWindow>` field is dropped, it will also send a
