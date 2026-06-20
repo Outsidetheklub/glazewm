@@ -16,9 +16,9 @@ use windows::{
     UI::WindowsAndMessaging::{
       CreateWindowExW, DefWindowProcW, DestroyWindow, DispatchMessageW,
       GetMessageW, PostMessageW, PostThreadMessageW, RegisterClassW,
-      RegisterWindowMessageW, SendMessageW, TranslateMessage, CS_HREDRAW,
-      CS_VREDRAW, CW_USEDEFAULT, MSG, WINDOW_EX_STYLE, WM_QUIT, WNDCLASSW,
-      WNDPROC, WS_OVERLAPPEDWINDOW,
+      RegisterWindowMessageW, TranslateMessage, CS_HREDRAW, CS_VREDRAW,
+      CW_USEDEFAULT, MSG, WINDOW_EX_STYLE, WM_QUIT, WNDCLASSW, WNDPROC,
+      WS_OVERLAPPEDWINDOW,
     },
   },
 };

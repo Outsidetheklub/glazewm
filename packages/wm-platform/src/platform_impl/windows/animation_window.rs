@@ -1,7 +1,7 @@
-use std::sync::OnceLock;
+use std::sync::Once;
 
 use windows::{
-  core::{w, ComInterface},
+  core::{w, ComInterface, PCWSTR},
   Foundation::TypedEventHandler,
   Graphics::{
     Capture::{
@@ -489,7 +489,7 @@ impl CapturedFrame {
   /// produce a new frame (i.e. up to 16.7ms at 60Hz).
   fn new(hwnd: isize, context: &AnimationContext) -> crate::Result<Self> {
     let capture_item: GraphicsCaptureItem =
-      unsafe { context.capture_interop.0.CreateForWindow(hwnd)? };
+      unsafe { context.capture_interop.0.CreateForWindow(HWND(hwnd))? };
 
     // NOTE: `Direct3D11CaptureFramePool` cannot be reused across captures,
     // so we can't store it in `AnimationContext`.
