@@ -1,6 +1,6 @@
 general:
-  # Commands to run when the WM has started. This is useful for running a
-  # script or launching another application. 
+  # Commands to run when the WM has started.
+  startup_commands: ['shell-exec yasb']
 
   # Commands to run just before the WM is shutdown.
 
